@@ -1,0 +1,13 @@
+steps:
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/ibis-studio/seyanen-react', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/ibis-studio/seyanen-react']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'seyanen-react', '--image', 'gcr.io/ibis-studio/seyanen-react', '--region', 'asia-northeast1']
+images:
+- gcr.io/ibis-studio/seyanen-react

@@ -1,0 +1,43 @@
+@mixin mq($breakpoint: md) {
+	@media #{map-get($breakpoints, $breakpoint)} {
+		@content;
+	}
+}
+
+$breakpoint-sm: 640px !default;
+$breakpoint-md: 834px !default;
+$breakpoint-tab: 1024px !default;
+
+$breakpoints: (
+	'xs': 'screen and (max-width: 360px)',
+	'sm': 'screen and (max-width: 640px)',
+	'md': 'screen and (max-width: 834px)',
+	'lg': 'screen and (max-width: 990px)',
+	'tb': 'screen and (max-width: 1024px)',
+	'xl': 'screen and (max-width: 1270px)',
+	'xxl': 'screen and (max-width: 1400px)',
+	'lp': 'screen and (max-width: 1680px)',
+	'xs-min': 'screen and (min-width: 361px)',
+	'sm-min': 'screen and (min-width: 641px)',
+	'md-min': 'screen and (min-width: 835px)',
+	'lg-min': 'screen and (min-width: 991px)',
+	'tb-min': 'screen and (min-width: 1025px)',
+	'xl-min': 'screen and (min-width: 1271px)',
+	'xxl-min': 'screen and (min-width: 1401px)',
+	'lp-min': 'screen and (min-width: 1681px)',
+	) !default;
+
+  // @include mq(xl) {
+  
+  // }
+
+//====================================================
+// hover
+//====================================================
+@mixin hover(){
+	@media (any-hover: hover) {
+		&:hover{
+			@content;
+		}
+	}
+}

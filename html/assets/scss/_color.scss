@@ -1,0 +1,110 @@
+@import './variables';
+
+.bg-primary {
+  background: $color_primary !important;
+}
+
+.bg-white {
+  background: white !important;
+}
+.bg-white-07 {
+  background-color: (255, 255, 255, 0.7) !important;
+}
+.bg-blue-200 {
+  background: $color_blue_200 !important;
+}
+
+.bg-blue-100 {
+  background: $color_blue_100 !important;
+}
+
+.bg-blue-500 {
+  background: $color_blue_500;
+}
+
+.bg-pink {
+  background: $color_pink !important;
+}
+
+.bg-violet {
+  background: $color-violet !important;
+}
+
+.color-gray {
+  color: $color-gray;
+}
+
+.color-white {
+  color: white !important;
+}
+
+// .color-red {
+//   color: red !important;
+// }
+
+.color-violet {
+  color: $color-violet;
+}
+
+.color-pink {
+  color: $color_pink !important;
+}
+
+.color-red {
+  color: $color_red !important;
+}
+
+.color-primary {
+  color: $color_primary !important;
+}
+.color-blue-200 {
+  color: $color_blue_200 !important;
+}
+
+.color-blue-500 {
+  color: $color_blue_500 !important;
+}
+
+.color-blue-150 {
+  color: $color_blue_150;
+}
+
+.color-black-22 {
+  color: $color-black-22;
+}
+
+.color-black-11 {
+  color: $color-black-11;
+}
+
+.color-gray-66 {
+  color: $color-gray-66;
+}
+
+.color-gray-99 {
+  color: $color-gray-99;
+}
+
+.color-gray-f0 {
+  color: $color-gray-f0;
+}
+
+.bg-gray-f0 {
+  background: $color-gray-f0 !important;
+}
+
+.bg-gray-100 {
+  background: $color-gray-100 !important;
+}
+
+.color-orange {
+  color: $color-orange;
+}
+
+.bg-orange {
+  background: $color-orange !important;
+}
+
+.bg-orange-05 {
+  background: $color-orange-05 !important;
+}

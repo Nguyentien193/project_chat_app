@@ -1,0 +1,9 @@
+Order Allow,Deny
+Allow from all
+AuthUserFile /var/www/html/.htpasswd
+#AuthGroupFile /dev/null
+AuthName "Basic Auth"
+AuthType Basic
+Require valid-user
+Options +Includes
+AddHandler server-parsed .html .inc

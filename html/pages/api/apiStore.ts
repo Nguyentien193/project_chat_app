@@ -1,0 +1,78 @@
+import axiosRequest from 'utils/axiosConfig';
+
+export const apiLogin = async (payload: any) => {
+  const res = await axiosRequest.post('/clients/login', payload);
+  return res;
+};
+
+export const apiLoginAdmin = async (payload: any) => {
+    const res = await axiosRequest.post('/users/login', payload);
+    return res;
+  };
+
+export const apiListAccount = async () => {
+  const res = await axiosRequest.get('/clients');
+  return res;
+};
+
+export const apiListCode = async () => {
+  const res = await axiosRequest.get('/codes');
+  return res;
+};
+
+export const apiCreateCode = async (payload: any) => {
+  const res = await axiosRequest.post('/codes', payload);
+  return res;
+};
+
+export const apiUpdateCode = async (id: any, payload: any) => {
+  const res = await axiosRequest.put(`/codes/${id}`, payload);
+  return res;
+};
+
+export const apiDelteCode = async (id: any) => {
+  const res = await axiosRequest.delete(`/codes/${id}`);
+  return res;
+};
+
+export const apiDetailCode = async (id: any) => {
+  const res = await axiosRequest.get(`/codes/${id}`);
+  return res;
+};
+
+
+export const apiListMessages = async () => {
+    const res = await axiosRequest.get('/management-messages');
+    return res;
+  };
+  
+  export const apiCreateMessages = async (payload: any) => {
+    const res = await axiosRequest.post('/management-messages', payload);
+    return res;
+  };
+  
+  export const apiUpdateMessages = async (id: any, payload: any) => {
+    const res = await axiosRequest.put(`/management-messages/${id}`, payload);
+    return res;
+  };
+  
+  export const apiDelteMessages = async (id: any) => {
+    const res = await axiosRequest.delete(`/management-messages/${id}`);
+    return res;
+  };
+  
+  export const apiDetailMessages = async (id: any) => {
+    const res = await axiosRequest.get(`/management-messages/${id}`);
+    return res;
+};
+  
+export const apiDetailSettingWeb = async (id: any) => {
+    const res = await axiosRequest.get(`/settings/contact`);
+    return res;
+};
+
+export const apiUpdateSettingWeb = async (payload: any) => {
+    const res = await axiosRequest.post('/settings/contact', payload);
+    return res;
+  };
+  

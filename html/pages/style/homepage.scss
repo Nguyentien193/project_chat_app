@@ -1,0 +1,171 @@
+.home_page {
+  height: 100vh !important;
+  max-height: 100vh;
+    overflow: scroll;
+  background: url('../../assets/images/background_home.jpg') no-repeat center center;
+  background-size: cover;
+  .container {
+    width: 100%;
+    padding-right: 12px;
+    padding-left: 12px;
+    margin-right: auto;
+    margin-left: auto;
+
+    &_title {
+      padding: 30px 0;
+      text-align: center;
+      & h2 {
+        font-size: 22px;
+        color: white;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+    }
+  }
+}
+.card_list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 14px;
+  background: #fff;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-bottom: 16px;
+  border-radius: 4px;
+  .card_item {
+    width: 33.33%;
+    padding: 10px; // khoảng cách giữa các card
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .card_item img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+}
+
+.login_page {
+  .container_title {
+    padding: 24px 0;
+    text-align: center;
+  }
+
+  .box_form {
+    background-color: #5a2d2d6b;
+    border-radius: 4px;
+    padding-top: 24px;
+    max-width: 600px;
+    margin: 0 auto;
+    max-height: 600px;
+    overflow-y: scroll;
+    & h3 {
+      color: #6c757d;
+      margin: 0 auto;
+      text-align: center;
+      font-size: 20px;
+      font-weight: 500;
+      margin-bottom: 16px;
+    }
+    .card_list {
+      background-color: unset;
+    }
+
+    .box_message{
+        border-radius: 5px;
+        background-color: white;
+        text-align: center;
+        font-size: 14px;
+        color: #333333;
+        padding: 40px 0px;
+        margin: 8px 5px;
+    }
+    .form_login {
+      .form-label {
+        font-weight: 700;
+        text-transform: uppercase;
+        color: white;
+        font-size: 16px;
+        display: block;
+      }
+
+      .form-control {
+        width: 100%;
+      }
+
+      .form_input {
+        padding: 6px 12px;
+        font-size: 16px;
+        font-weight: 400;
+        color: #212529;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        display: block;
+        width: 100%;
+        outline: none;
+        border-radius: 4px;
+      }
+
+      .btn_submit {
+        color: #fff;
+        background-color: #0d6efd;
+        border-color: #0d6efd;
+        font-weight: 700;
+        text-transform: uppercase;
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 16px;
+        &:hover {
+          cursor: pointer;
+          opacity: 0.8;
+        }
+      }
+    }
+  }
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.my-16 {
+  margin: 16px 0;
+}
+
+.marquee-wrapper {
+  height: 180px; // hoặc bất kỳ chiều cao bạn muốn
+  overflow: hidden;
+  position: relative;
+}
+
+.marquee-content {
+  position: absolute;
+  bottom: 0;
+  animation: scroll-up 150s linear infinite;
+  will-change: transform;
+}
+
+.marquee-block {
+  display: block;
+}
+
+.marquee-block p {
+  margin: 8px 0;
+  font-size: 14px;
+  color: white;
+}
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
+  }
+}

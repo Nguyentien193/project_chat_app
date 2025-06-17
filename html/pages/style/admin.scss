@@ -1,0 +1,274 @@
+@import '../../assets/scss/mixin';
+
+.table_scroll {
+  max-height: 80vh;
+  overflow-y: scroll;
+}
+.responsive-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  position: relative;
+
+  th,
+  td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+
+  .status {
+    background-color: #28a745;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  .edit,
+  .delete {
+    padding: 4px 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    border-radius: 4px;
+  }
+
+  .edit {
+    background-color: #00c3ff;
+    color: white;
+    margin-right: 4px;
+  }
+
+  .delete {
+    background-color: #ff4d4f;
+    color: white;
+  }
+
+  @media (max-width: 833px) {
+    thead {
+      display: none;
+    }
+
+    tbody tr {
+      display: block;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      padding: 8px;
+    }
+
+    tbody td {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border: none;
+    }
+
+    tbody td::before {
+      content: attr(data-label);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+    }
+
+   
+  }
+  
+}
+
+@media (max-width: 833px) {
+  .table_code {
+    tbody td:nth-child(1)::before {
+      content: 'STT';
+    }
+
+    tbody td:nth-child(2)::before {
+      content: 'Code';
+    }
+
+    tbody td:nth-child(3)::before {
+      content: 'Ghi chú';
+    }
+
+    tbody td:nth-child(4)::before {
+      content: 'Trạng thái';
+    }
+
+    tbody td:nth-child(5)::before {
+      content: 'Hành động';
+    }
+  }
+
+  .table_account {
+    tbody td:nth-child(1)::before {
+      content: 'STT';
+    }
+
+    tbody td:nth-child(2)::before {
+      content: 'Code';
+    }
+
+    tbody td:nth-child(3)::before {
+      content: 'Ngày đăng kí';
+    }
+
+    tbody td:nth-child(4)::before {
+      content: 'Hành động';
+    }
+  }
+
+  .table_message {
+    tbody td:nth-child(1)::before {
+      content: 'STT';
+    }
+
+    tbody td:nth-child(2)::before {
+      content: 'Ảnh';
+    }
+
+    tbody td:nth-child(3)::before {
+      content: 'Tài khoản';
+    }
+
+    tbody td:nth-child(4)::before {
+      content: 'Nội dung';
+    }
+
+    tbody td:nth-child(5)::before {
+      content: 'Thời gian';
+    }
+
+    tbody td:nth-child(6)::before {
+      content: 'Trạng thái';
+    }
+
+    tbody td:nth-child(7)::before {
+      content: 'Hành động';
+    }
+  }
+}
+
+.page_admin {
+  padding: 16px 24px;
+  @include mq(md) {
+    padding: 16px 12px;
+  }
+  &_title {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+    & h2 {
+      font-size: 25px;
+      color: #212529;
+      font-weight: 600;
+    }
+  }
+  .btn_add {
+    font-size: 14px;
+    padding: 6px 8px;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background-color: #0d6efd;
+    border: none;
+    outline: none;
+    border-radius: 4px;
+    width: max-content;
+    text-decoration: none;
+    min-width: 90px;
+    &:hover {
+      opacity: 0.8;
+      cursor: pointer;
+    }
+  }
+  .btn_close {
+    background-color: white;
+    color: #6c757d;
+    border: 1px solid #ddd;
+  }
+}
+
+.render_code {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  border: 1px solid #0dcaf0;
+  color: #0dcaf0;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 6px 12px;
+  background-color: white;
+  border-radius: 4px;
+  &:hover {
+    background-color: #0dcaf0;
+    color: #212529;
+  }
+}
+
+.form-create-code {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .flex-center {
+    @include mq(sm) {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  }
+}
+
+.form-create-ms {
+  .form-input {
+    width: 100%;
+  }
+}
+
+.login_admin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  & h3 {
+    color: white !important;
+  }
+  .box_form {
+    padding: 20px;
+  }
+
+  .form_login {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+.error_message {
+  font-size: 14px;
+  color: red;
+  font-weight: 500;
+}
+
+.custom_toast {
+  width: auto;
+  white-space: wrap;
+  font-size: 14px;
+}
+

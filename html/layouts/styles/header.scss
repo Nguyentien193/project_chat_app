@@ -1,0 +1,106 @@
+@import '../../assets/scss/mixin';
+
+.header {
+  width: 100%;
+  gap: 28px;
+  display: flex;
+  align-items: center;
+  background-color: #212529;
+  padding: 0 12px;
+  height: 50px;
+  max-height: 50px;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
+  @include mq(xl-min) {
+    justify-content: flex-end;
+    .header-btn-bar {
+      display: none;
+      border: none;
+      outline: none;
+    }
+  }
+
+
+  @include mq(md) {
+    padding: 10px;
+    margin-left: 0px;
+  }
+  @include mq(sm) {
+    padding: 10px;
+  }
+  &_left {
+    width: 60%;
+    box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25);
+    align-items: center;
+    gap: 16px;
+    display: none;
+    @include mq(md) {
+      display: flex;
+    }
+    .title_header {
+      font-size: 16px;
+      color: white;
+      padding: 12px 0;
+    }
+  }
+  &_btn-bar {
+    display: none;
+    border-radius: 6px;
+    width: 30px;
+    height: 30px;
+    background-color: #dddddd;
+    cursor: pointer;
+    @include mq(md) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      font-size: 16px;
+      color: white;
+    }
+    @include mq {
+      border-radius: 3px;
+    }
+    & img {
+      height: 20px;
+      width: 20px;
+    }
+  }
+
+  &_right {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-end;
+
+    .btn_logout {
+      border: none;
+      outline: none;
+      color: white;
+      opacity: 0.55;
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background-color: #212529;
+      &:hover {
+        opacity: 1;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.line {
+  width: calc(100% - 30px);
+  height: 1px;
+  background-color: #cccccc;
+  float: right;
+  @include mq(xl) {
+    width: 100%;
+  }
+}

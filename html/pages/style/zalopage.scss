@@ -1,0 +1,160 @@
+.zalo_container {
+  position: relative;
+  margin: 0 auto;
+  background-color: white;
+  .zalo_header {
+    position: fixed;
+    top: 0;
+    background: linear-gradient(31deg, #247bff 0, #01bafa 100%);
+    font-size: 24px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    padding: 12px 8px;
+    font-weight: 700;
+    &--left {
+      display: flex;
+      gap: 8px;
+      & span {
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 19.2px;
+        font-weight: 500;
+      }
+    }
+    &--right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+  }
+  .zalo_footer {
+    border-top: 1px solid #dee2e6;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0 10px;
+    .list_menu {
+      padding: 10px 0;
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-around;
+      padding-left: 0;
+      list-style: none;
+      margin: 0;
+      .menu_item {
+        & div,
+        a {
+          display: flex;
+          align-items: center;
+          flex-direction: column;
+          text-decoration: none;
+          & span {
+            color: #000;
+          }
+          .icon {
+            font-weight: 900;
+            font-size: 18px;
+            color: #000;
+          }
+        }
+      }
+      .active {
+        color: #1697fd !important;
+        & span {
+          color: #1697fd !important;
+        }
+        .icon {
+          color: #1697fd !important;
+        }
+      }
+    }
+  }
+
+  .zalo_setting {
+    margin-top: 51px;
+    background-color: rgba(0, 0, 0, 0.03);
+    height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    .setting_item {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: #ffffff;
+      .avatar {
+        width: 60px;
+        height: 60px;
+        object-fit: cover;
+        border-radius: 100%;
+      }
+      .icon {
+        font-size: 23px;
+        font-weight: 600;
+        color: #0d6efd;
+      }
+      &--text {
+        & p {
+          font-size: 16px;
+          color: #212529;
+          font-weight: 500;
+        }
+        & span {
+          font-size: 14px;
+          color: rgba(0, 0, 0, 0.5);
+        }
+      }
+    }
+    .divider {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
+      width: 100%;
+    }
+  }
+
+  .zalo_message {
+    margin-top: 51px;
+    background-color: #ffffff;
+    height: calc(100vh - 110px);
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    overflow-y: scroll;
+    .message_item {
+      align-items: start;
+      gap: 24px;
+      padding: 0;
+      &:not(:first-child){
+        margin-top: 8px;
+      }
+      .avatar {
+        height: 40px;
+        width: 40px;
+        border-radius: 100%;
+        object-fit: cover;
+      }
+      .message_status{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+    .divider {
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 16px;
+      width: 100%;
+    }
+  }
+}
+
+.pb-reset {
+  padding-bottom: 0 !important;
+}
+
+.pt-reset {
+  padding-top: 0 !important;
+}
