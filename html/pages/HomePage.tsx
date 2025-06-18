@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './style/homepage.scss';
+import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const img1 = require('assets/images/img1.jpg');
 const img2 = require('assets/images/img2.jpg');
@@ -19,6 +21,7 @@ const HomePage = () => {
       <div className="container">
         <div className="container_title">
           <h2>Vui Lòng Lựa Chọn Dịch Vụ bạn Mong Muốn</h2>
+          <FontAwesomeIcon icon={faArrowDown} className="icon_down" />
         </div>
         <div className="card_list">
           <div className="card_item">
