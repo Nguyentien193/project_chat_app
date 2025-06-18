@@ -7,7 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/',
+    publicPath: '/dist/',
   },
   mode: process.env.NODE_ENV || 'development',
   module: {
@@ -57,6 +57,8 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: './html/index.html',
+      filename: 'index.html',
+      publicPath: '/dist/',
     }),
     new CleanWebpackPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
