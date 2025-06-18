@@ -50,18 +50,15 @@ const Login = () => {
     if (data.phone === '') {
       setIsPhone(true);
     }
-    console.log('data: ', data);
     try {
       const res = await apiLogin(data);
       if (res) {
-        console.log('res: ', res);
         navigate('/taikhoan');
-        // toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
-        //   className: 'custom_toast',
-        // });
       }
     } catch (error) {
-      handleError(error);
+      toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
+        className: 'custom_toast',
+      });
     } finally {
       setIsSubmitting(false);
     }
