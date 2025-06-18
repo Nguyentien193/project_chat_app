@@ -33,10 +33,6 @@ export const saveToken = (accessToken: string, exdays = 1) => {
 };
 
 export const destroyLogged = () => {
-  console.log('111111111111');
-  console.log('APP_CONFIG.tokenKey: ', APP_CONFIG.tokenKey);
-  console.log('APP_CONFIG.profileKey: ', APP_CONFIG.profileKey);
-  
   delCookie(APP_CONFIG.tokenKey);
   delCookie(APP_CONFIG.profileKey);
   localStorage.clear();

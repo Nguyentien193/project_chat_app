@@ -65,7 +65,7 @@ module.exports = {
     }),
   ],
   devServer: {
-    static: path.join(__dirname, './html'),
+    static: path.join(__dirname, 'dist'),
     port: 8080,
     hot: 'only',
     compress: true,
