@@ -7,10 +7,7 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    // publicPath: '/', // local
-    // khi deploy mở ra
     publicPath: '/dist/',
-
   },
   mode: process.env.NODE_ENV || 'development',
   module: {
@@ -61,7 +58,6 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './html/index.html',
       filename: 'index.html',
-    // khi deploy mở ra local comment
       publicPath: '/dist/',
     }),
     new CleanWebpackPlugin(),
