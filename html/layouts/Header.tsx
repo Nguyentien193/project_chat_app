@@ -1,22 +1,12 @@
-import { useContext, useEffect } from 'react';
-import { AppContext } from '../contextProvider/AppContext';
+import { faBars, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faEllipsis, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from 'react';
+import { destroyLogged } from 'utils/jwt';
+import { AppContext } from '../contextProvider/AppContext';
 import './styles/header.scss';
-import { handleError, isLogin } from 'utils/jwt';
 
 const Header = () => {
-  const {
-    showNavbar,
-    setShowNavbar,
-    userProfile,
-    optionsDomain,
-    setOptionsDomain,
-    domains,
-    setDomains,
-    setUserProfile,
-  } = useContext(AppContext);
-  const checkLogin = isLogin();
+  const { showNavbar, setShowNavbar } = useContext(AppContext);
 
   return (
     <>
@@ -31,7 +21,14 @@ const Header = () => {
         </div>
 
         <div className="header_right">
-          <button type="button" className="btn_logout">
+          <button
+            type="button"
+            className="btn_logout"
+            onClick={() => {
+              destroyLogged();
+              window.location.reload();
+            }}
+          >
             <span className="header_btn-bar-img">
               <FontAwesomeIcon icon={faRightFromBracket} />
             </span>

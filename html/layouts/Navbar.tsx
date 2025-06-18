@@ -4,6 +4,7 @@ import { useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { AppContext } from '../contextProvider/AppContext';
 import './styles/navbar.scss';
+import { destroyLogged } from 'utils/jwt';
 
 const Navbar = () => {
   const { showNavbar, setShowNavbar } = useContext(AppContext);
@@ -59,7 +60,15 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a
+              className="nav-link"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                destroyLogged();
+                window.location.reload();
+              }}
+            >
               <span data-feather="file-text"></span>
               Đăng xuất
             </a>
@@ -129,7 +138,15 @@ const Navbar = () => {
             </Link>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">
+            <a
+              className="nav-link"
+              href="#"
+              onClick={(e) => {
+                e.preventDefault();
+                destroyLogged();
+                window.location.reload();
+              }}
+            >
               <span data-feather="file-text"></span>
               Đăng xuất
             </a>

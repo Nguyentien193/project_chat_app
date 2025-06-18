@@ -237,3 +237,19 @@ border-radius: 4px;
     fill: none;
   }
 }
+
+.error_message {
+  font-size: 14px;
+  color: red;
+  font-weight: 500;
+}
+
+.custom_toast {
+  width: auto;
+  white-space: wrap;
+  font-size: 14px;
+}
+
+.hover {
+  cursor: pointer;
+}

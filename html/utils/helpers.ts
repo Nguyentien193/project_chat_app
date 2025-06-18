@@ -27,17 +27,19 @@ export const saveCookie = (cookieData: { name: string; value: string; exdays: nu
   }
   const date = new Date();
   date.setTime(date.getTime() + cookieData.exdays * 24 * 60 * 60 * 1000);
-  document.cookie = `${cookieData.name}=${cookieData.value}; expires=${date.toUTCString()}`;
+  document.cookie = `${cookieData.name}=${cookieData.value}; expires=${date.toUTCString()}; path=/`;
 };
 
 /**
  * Del Cookie by name
  **/
-export const delCookie = (name: string) => {
-  if (!name) {
-    return;
+export const delCookie = (name: string, domain?: string) => {
+  if (!name) return;
+  let cookie = `${name}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+  if (domain) {
+    cookie += ` domain=${domain};`;
   }
-  document.cookie = name + '=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  document.cookie = cookie;
 };
 
 /**

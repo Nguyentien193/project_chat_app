@@ -16,6 +16,7 @@
     padding: 8px;
     vertical-align: middle;
     text-align: left;
+    min-width: 80px;
   }
 
   img {
@@ -260,15 +261,5 @@
   }
 }
 
-.error_message {
-  font-size: 14px;
-  color: red;
-  font-weight: 500;
-}
 
-.custom_toast {
-  width: auto;
-  white-space: wrap;
-  font-size: 14px;
-}
 

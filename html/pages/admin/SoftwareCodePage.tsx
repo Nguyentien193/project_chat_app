@@ -16,7 +16,6 @@ const SoftwareCodePage = () => {
     try {
       const res = await apiListCode();
       if (res) {
-        console.log('res: ', res);
         setCode(res.data);
       }
     } catch (error) {

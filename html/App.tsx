@@ -27,7 +27,9 @@ const App: React.FC = () => {
       <CustomRouter history={history}>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="/taikhoan" element={<ZaloPage />} />
           <Route path="/zalo" element={<ZaloPage />} />
+          <Route path="/xemtinnhan/:id" element={<ZaloPage />} />
           <Route path="/admin/login" element={<LoginAdmin />} />
           <Route path="/dangnhap" element={<Login />} />
           <Route path="/*" element={<DefaultLayout />} />

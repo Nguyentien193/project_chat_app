@@ -4,6 +4,10 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import ProgressBar from 'components/ProcessBar';
 import { useForm } from 'react-hook-form';
+import { apiLogin } from './api/apiStore';
+import { handleError } from 'utils/jwt';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 const img1 = require('assets/images/img1.jpg');
 const img2 = require('assets/images/img2.jpg');
 const img3 = require('assets/images/img3.jpg');
@@ -13,13 +17,14 @@ const img6 = require('assets/images/img6.jpg');
 
 interface Payload {
   phone: string;
-  password: string;
+  code: string;
 }
 
 const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [phone, setPhone] = useState<string>('');
-
+  const [isPhone, setIsPhone] = useState(false);
+  const navigate = useNavigate();
   const {
     register,
     formState: { errors },
@@ -28,17 +33,38 @@ const Login = () => {
   } = useForm<Payload>({
     defaultValues: {
       phone: '',
-      password: '',
+      code: '',
     },
   });
 
   const handleChangePhone = (phone: string) => {
     setValue('phone', phone);
+    if (phone !== '') {
+      setIsPhone(false);
+    }
+    setPhone(phone);
   };
   const onSubmit = async (data: any) => {
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 3000));
-    setIsSubmitting(false);
+    if (isSubmitting) return;
+    if (data.phone === '') {
+      setIsPhone(true);
+    }
+    console.log('data: ', data);
+    try {
+      const res = await apiLogin(data);
+      if (res) {
+        console.log('res: ', res);
+        navigate('/taikhoan');
+        // toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
+        //   className: 'custom_toast',
+        // });
+      }
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <div className="home_page login_page">
@@ -89,14 +115,14 @@ const Login = () => {
             <form className="form_login" autoComplete="off" onSubmit={handleSubmit(onSubmit)}>
               <label className="form-label mb-16">Số Điện Thoại:</label>
               <PhoneInput country={'vn'} value={phone} onChange={(phone) => handleChangePhone(phone)} />
-              {phone === '' && <p className="error_message">{'Nhập số điện thoại'}</p>}
+              {isPhone && <p className="error_message">{'Nhập số điện thoại'}</p>}
               <label className="form-label my-16">Mã phần mềm - nhận tại Hotline/Zalo: admin</label>
               <input
-                {...register('password', { required: 'Không được để trống !' })}
+                {...register('code', { required: 'Không được để trống !' })}
                 className="form_input mb-16"
                 placeholder="Nhập mã phần mềm"
               />
-              {errors.password && <p className="error_message">{errors.password.message}</p>}
+              {errors.code && <p className="error_message">{errors.code.message}</p>}
               <button type="submit" className="btn_submit">
                 Đăng nhập
               </button>

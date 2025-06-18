@@ -17,7 +17,6 @@ const MessagePage = () => {
     try {
       const res = await apiListMessages();
       if (res) {
-        console.log('res: ', res);
         setMessages(res.data);
       }
     } catch (error) {
@@ -64,17 +63,17 @@ const MessagePage = () => {
           </thead>
           <tbody>
             {messages?.map((item: any, idx: number) => (
-              <tr>
+              <tr key={idx}>
                 <td>{idx + 1}</td>
                 <td>
                   <img src={item.image_url} alt="avatar" />
                 </td>
                 <td>{item.account}</td>
                 <td>{item.content}</td>
-                <td>-</td>
+                <td>{item.custom_time ? item.custom_time : ''}</td>
                 <td>{item.status === 1 ? <span className="status">Hiển thị</span> : ''}</td>
                 <td>
-                  <button type="button" className="edit" onClick={() => naviagte(`/admin/msms/edit/${item.id}`)}>
+                  <button type="button" className="edit " onClick={() => naviagte(`/admin/msms/edit/${item.id}`)}>
                     Sửa
                   </button>
                   <button type="button" className="delete" onClick={() => handleDeleteMessages(item.id)}>

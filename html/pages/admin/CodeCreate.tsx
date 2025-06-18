@@ -1,9 +1,9 @@
 import { faBarcode, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { apiDetailCode, apiUpdateCode } from 'pages/api/apiStore';
+import { apiCreateCode, apiDetailCode, apiUpdateCode } from 'pages/api/apiStore';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { handleError } from 'utils/jwt';
 interface Payload {
   code: string;
@@ -11,11 +11,11 @@ interface Payload {
   status: string | number;
 }
 const CodeCreate = () => {
-  const [code, setCode] = useState<string>('');
-  const [status, setStatus] = useState(1);
+  const [status, setStatus] = useState(0);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const { id }: any = useParams();
+  const navigate = useNavigate();
   const { register, handleSubmit, setValue } = useForm<Payload>({
     defaultValues: {
       code: '',
@@ -38,19 +38,32 @@ const CodeCreate = () => {
         setStatus(status);
         setValue('code', code);
         setValue('note', note);
-        console.log('res: ', res);
       }
     } catch (error) {
       handleError(error);
     }
   };
 
-  const handleUPdateCode = async (payload: any) => {
+  const handleUpdateCode = async (payload: any) => {
     if (isLoading) return;
     try {
       const res = await apiUpdateCode(id, payload);
       if (res) {
-        console.log('res: ', res);
+        navigate('/admin/dashboard');
+      }
+    } catch (error) {
+      handleError(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleCreateCode = async (payload: any) => {
+    if (isLoading) return;
+    try {
+      const res = await apiCreateCode(payload);
+      if (res) {
+        navigate('/admin/dashboard');
       }
     } catch (error) {
       handleError(error);
@@ -71,7 +84,11 @@ const CodeCreate = () => {
 
   const onSubmit = (data: any) => {
     setIsLoading(true);
-    handleUPdateCode(data);
+    if (id) {
+      handleUpdateCode(data);
+    } else {
+      handleCreateCode(data);
+    }
   };
   return (
     <div className="page_admin">
@@ -110,7 +127,7 @@ const CodeCreate = () => {
         </div>
         <button disabled={isLoading} type="submit" className="btn_add">
           <FontAwesomeIcon icon={faSave} />
-          Tạo mới
+          {id ? 'Cập nhập' : 'Tạo mới'}
         </button>
       </form>
     </div>

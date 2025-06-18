@@ -2,15 +2,17 @@ import './style/homepage.scss';
 import './style/admin.scss';
 import { useForm } from 'react-hook-form';
 import { apiLoginAdmin } from './api/apiStore';
-import { handleError, saveToken } from 'utils/jwt';
-import { useState } from 'react';
+import { handleError, saveAuth, saveToken } from 'utils/jwt';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../contextProvider/AppContext';
 
 interface Payload {
   email: string;
   password: string;
 }
 const LoginAdmin = () => {
+  const { userProfile, setUserProfile } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -33,6 +35,8 @@ const LoginAdmin = () => {
         const token = res.bearer_token;
         if (token) {
           saveToken(token, 7);
+          saveAuth(res.user, 7);
+          setUserProfile(res.user);
           naviagte('/admin/dashboard');
         }
       }
@@ -45,7 +49,7 @@ const LoginAdmin = () => {
   return (
     <div className="home_page login_page login_admin">
       <div className="container">
-        <div className="box_form form-create-code">
+        <div className="box_form form-create-ms">
           <h3>ĐĂNG NHẬP HỆ THỐNG ADMIN</h3>
           <form className="form_login" onSubmit={handleSubmit(onSubmit)}>
             <div className="form-control">

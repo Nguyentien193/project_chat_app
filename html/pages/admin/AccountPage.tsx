@@ -1,4 +1,5 @@
-import { apiListAccount } from 'pages/api/apiStore';
+import moment from 'moment';
+import { apiDeleteAccount, apiListAccount } from 'pages/api/apiStore';
 import { useEffect, useState } from 'react';
 import { handleError } from 'utils/jwt';
 
@@ -12,12 +13,27 @@ const AccountPage = () => {
     try {
       const res = await apiListAccount();
       if (res) {
-        console.log('res: ', res);
         setAccount(res.data);
       }
     } catch (error) {
       handleError(error);
     }
+  };
+
+  const handleDeleteAccount = async (id: any) => {
+    try {
+      handleDeleteData(id);
+      await apiDeleteAccount(id);
+    } catch (error) {
+      handleError(error);
+    }
+  };
+
+  const handleDeleteData = (id: number) => {
+    const arrCopy = [...account];
+    const index = arrCopy.findIndex((item) => item.id === id);
+    arrCopy.splice(index, 1);
+    setAccount(arrCopy);
   };
   return (
     <div className="page_admin">
@@ -35,16 +51,18 @@ const AccountPage = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1</td>
-              <td>777b</td>
-              <td>15/06/2025</td>
-              <td>
-                <button type="button" className="delete">
-                  Xóa
-                </button>
-              </td>
-            </tr>
+            {account?.map((item: any, idx: number) => (
+              <tr key={idx}>
+                <td>{idx + 1}</td>
+                <td>{item.code}</td>
+                <td>{moment(item.created_at).format('DD/MM/YYYY')}</td>
+                <td>
+                  <button type="button" className="delete" onClick={() => handleDeleteAccount(item.id)}>
+                    Xóa
+                  </button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

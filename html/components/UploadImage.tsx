@@ -1,15 +1,27 @@
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
-const UploadImage = () => {
+interface Props {
+  onChange: (file: any) => void;
+  imgUrl?: any;
+}
+const UploadImage = ({ onChange, imgUrl }: Props) => {
   const inputRef = useRef<HTMLInputElement>(null);
   const [fileName, setFileName] = useState('No file chosen');
   const [imagePreview, setImagePreview] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (imgUrl) {
+      setImagePreview(imgUrl);
+    }
+  }, [imgUrl]);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
       setFileName(file.name);
+      onChange(file);
       const reader = new FileReader();
       reader.onloadend = () => {
         setImagePreview(reader.result as string);
@@ -40,7 +52,13 @@ const UploadImage = () => {
           Choose File
         </button>
         <span className="file-name">{fileName}</span>
-        <input type="file" ref={inputRef} onChange={handleChange} className="hidden-input" />
+        <input
+          type="file"
+          accept="image/jpg,image/jpeg,image/png"
+          ref={inputRef}
+          onChange={handleChange}
+          className="hidden-input"
+        />
       </div>
     </div>
   );

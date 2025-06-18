@@ -31,7 +31,12 @@ export const saveAuth = (auth: any, exdays = 1) => {
 export const saveToken = (accessToken: string, exdays = 1) => {
   saveCookie({ name: APP_CONFIG.tokenKey, value: accessToken, exdays });
 };
+
 export const destroyLogged = () => {
+  console.log('111111111111');
+  console.log('APP_CONFIG.tokenKey: ', APP_CONFIG.tokenKey);
+  console.log('APP_CONFIG.profileKey: ', APP_CONFIG.profileKey);
+  
   delCookie(APP_CONFIG.tokenKey);
   delCookie(APP_CONFIG.profileKey);
   localStorage.clear();
