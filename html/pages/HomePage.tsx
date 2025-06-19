@@ -14,10 +14,14 @@ const img9 = require('assets/images/img9.jpg');
 const img10 = require('assets/images/img10.jpg');
 const img11 = require('assets/images/img11.jpg');
 const img12 = require('assets/images/img12.jpg');
+const video_bg = require('assets/images/video_background.mp4');
 
 const HomePage = () => {
   return (
     <div className="home_page">
+      <video autoPlay muted loop playsInline className="bg-video">
+        <source src={video_bg} type="video/mp4" />
+      </video>
       <div className="container">
         <div className="container_title">
           <h2>Vui Lòng Lựa Chọn Dịch Vụ bạn Mong Muốn</h2>

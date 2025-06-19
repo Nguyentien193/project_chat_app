@@ -2,9 +2,22 @@
   height: 100vh !important;
   max-height: 100vh;
     overflow: scroll;
-  background: url('../../assets/images/background_home.jpg') no-repeat center center;
-  background-size: cover;
+     position: relative;
+  // background: url('../../assets/images/background_home.jpg') no-repeat center center;
+  // background-size: cover;
+   video.bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    z-index: -1;
+  }
   .container {
+     position: relative;
+    z-index: 1; // Đảm bảo hiển thị phía trên video
     width: 100%;
     padding-right: 12px;
     padding-left: 12px;

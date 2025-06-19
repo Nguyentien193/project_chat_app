@@ -11,8 +11,11 @@ interface Payload {
   email: string;
   password: string;
 }
+
+const video_bg = require('assets/images/video_background.mp4');
+
 const LoginAdmin = () => {
-  const { userProfile, setUserProfile } = useContext(AppContext);
+  const { setUserProfile } = useContext(AppContext);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const {
     register,
@@ -48,6 +51,9 @@ const LoginAdmin = () => {
   };
   return (
     <div className="home_page login_page login_admin">
+      <video autoPlay muted loop playsInline className="bg-video">
+        <source src={video_bg} type="video/mp4" />
+      </video>
       <div className="container">
         <div className="box_form form-create-ms">
           <h3>ĐĂNG NHẬP HỆ THỐNG ADMIN</h3>

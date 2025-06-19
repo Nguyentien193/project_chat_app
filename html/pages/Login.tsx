@@ -1,19 +1,19 @@
+import ProgressBar from 'components/ProcessBar';
 import { useState } from 'react';
-import './style/homepage.scss';
+import { useForm } from 'react-hook-form';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
-import ProgressBar from 'components/ProcessBar';
-import { useForm } from 'react-hook-form';
-import { apiLogin } from './api/apiStore';
-import { handleError } from 'utils/jwt';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { apiLogin } from './api/apiStore';
+import './style/homepage.scss';
 const img1 = require('assets/images/img1.jpg');
 const img2 = require('assets/images/img2.jpg');
 const img3 = require('assets/images/img3.jpg');
 const img4 = require('assets/images/img4.jpg');
 const img5 = require('assets/images/img5.jpg');
 const img6 = require('assets/images/img6.jpg');
+const video_bg = require('assets/images/video_background.mp4');
 
 interface Payload {
   phone: string;
@@ -65,6 +65,9 @@ const Login = () => {
   };
   return (
     <div className="home_page login_page">
+      <video autoPlay muted loop playsInline className="bg-video">
+        <source src={video_bg} type="video/mp4" />
+      </video>
       <div className="container">
         <div className="container_title container_title--login ">
           <h2>Công Nghệ 24H</h2>

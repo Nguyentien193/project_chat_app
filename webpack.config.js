@@ -28,6 +28,10 @@ module.exports = {
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
+        test: /\.(mp4|webm|ogg)$/,
+        type: 'asset/resource',
+      },
+      {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
