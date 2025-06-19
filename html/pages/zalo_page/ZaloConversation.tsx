@@ -5,26 +5,13 @@ import { handleError } from 'utils/jwt';
 
 const ZaloConversation = () => {
   const [conversation, setConversation] = useState<any[]>([]);
-  const [adminInfo, setAdminInfo] = useState<any>();
   const location = useLocation();
   const state = location.state;
   const { id } = useParams();
 
   useEffect(() => {
     getListAll();
-    getAdminInfo();
   }, []);
-
-  const getAdminInfo = async () => {
-    try {
-      const res = await apiDetailSettingWeb();
-      if (res) {
-        setAdminInfo(res.data);
-      }
-    } catch (error) {
-      handleError(error);
-    }
-  };
 
   const getListAll = async () => {
     try {
