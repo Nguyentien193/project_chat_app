@@ -202,13 +202,12 @@
   display: none;
 }
 
-
 .select-custom {
   position: relative;
   display: inline-block;
   width: 100%;
   font-size: 14px;
-border-radius: 4px;
+  border-radius: 4px;
   select {
     appearance: none;
     -webkit-appearance: none;
@@ -252,4 +251,81 @@ border-radius: 4px;
 
 .hover {
   cursor: pointer;
+}
+
+.mb-16 {
+  margin-bottom: 16px;
+}
+
+.my-16 {
+  margin: 16px 0;
+}
+
+.border-none {
+  border: unset !important;
+}
+
+.text-danger {
+  color: #dc3545 !important;
+}
+
+.switch {
+  display: inline-block;
+}
+
+.switch input {
+  display: none;
+}
+
+.switch label {
+  display: block;
+  width: 32px;
+  height: 16px;
+  border-radius: 15px;
+  border: 2px solid #ccc;
+  background: #f5f5f5;
+  cursor: pointer;
+  transition: 0.3s;
+  position: relative;
+}
+
+.switch label::after {
+  content: '';
+  display: inherit;
+  width: 10px;
+  height: 9px;
+  border-radius: 12px;
+  background: #bcbcbc;
+  transition: 0.3s;
+  position: absolute;
+  top: 2px;
+  left: 2px;
+}
+
+.switch input:checked ~ label {
+  border-color: #ffffff;
+  background: #1c88d0;
+}
+
+.switch input:checked ~ label::after {
+  translate: 15px 0;
+  background: #ffffff;
+}
+
+.fz {
+  &-18 {
+    font-size: 18px !important;
+  }
+  &-20 {
+    font-size: 20px !important;
+  }
+  &-22 {
+    font-size: 22px !important;
+  }
+  &-24 {
+    font-size: 24px !important;
+  }
+  &-26 {
+    font-size: 26px !important;
+  }
 }

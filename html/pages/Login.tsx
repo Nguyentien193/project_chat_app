@@ -117,6 +117,7 @@ const Login = () => {
               <input
                 {...register('code', { required: 'Không được để trống !' })}
                 className="form_input mb-16"
+                type="password"
                 placeholder="Nhập mã phần mềm"
               />
               {errors.code && <p className="error_message">{errors.code.message}</p>}

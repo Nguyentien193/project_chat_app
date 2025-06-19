@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { handleError } from 'utils/jwt';
+import ListConversation from './ListConversation';
 
 const CreateUpdateMS = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -31,11 +32,10 @@ const CreateUpdateMS = () => {
       const res = await apiDetailMessages(id);
       if (res) {
         const { status, account, content, custom_time, image_url } = res.data;
-        setValue('file', image_url);
-        setValue('status', status);
-        setValue('account', account);
-        setValue('content', content);
-        setValue('custom_time', custom_time);
+        setValue('status', status || '');
+        setValue('account', account || '');
+        setValue('content', content || '');
+        setValue('custom_time', custom_time ? custom_time : '');
         setImgDetail(image_url);
       }
     } catch (error) {
@@ -118,6 +118,7 @@ const CreateUpdateMS = () => {
             </svg>
           </div>
         </div>
+        {id && <ListConversation />}
 
         <div className="flex-center gap-10">
           <button type="submit" className="btn_add">

@@ -2,6 +2,7 @@ import { faCloud, faLock, faQrcode, faShield } from '@fortawesome/free-solid-svg
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { apiDetailSettingWeb } from 'pages/api/apiStore';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { handleError } from 'utils/jwt';
 
 const img3 = require('assets/images/img3.jpg');
@@ -12,6 +13,7 @@ const imgDatastorage = require('assets/images/datastorage.png');
 const ZaloSetting = () => {
   const [userInfo, setUserInfo] = useState<any>();
   const isSetting = location.pathname.split('/').includes('taikhoan');
+  const navigate = useNavigate();
   useEffect(() => {
     if (isSetting) {
       getDetail();
@@ -84,7 +86,7 @@ const ZaloSetting = () => {
         </div>
       </div>
       <div>
-        <div className="setting_item pb-reset">
+        <div className="setting_item pb-reset" onClick={() => navigate('/baomat')}>
           <FontAwesomeIcon icon={faShield} className="icon" />
           <div className="setting_item--text divider">
             <p>Tài khoản và bảo mật</p>

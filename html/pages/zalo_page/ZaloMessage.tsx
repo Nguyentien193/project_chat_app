@@ -32,9 +32,9 @@ const ZaloMessage = () => {
           <div
             className="setting_item--text divider hover"
             onClick={() =>
-              naviagte(`/xemtinnhan/${item.id}`, {
+              naviagte(`/mokhoa/${item.id}`, {
                 state: {
-                  name: item.account,
+                  ...item,
                 },
               })
             }

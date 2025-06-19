@@ -22,7 +22,6 @@ const AdminSetting = () => {
       const res = await apiDetailSettingWeb();
       if (res) {
         const { code, description, image_url, key_word, main_account, phone, title, id } = res.data;
-        setValue('file', image_url);
         setValue('code', code);
         setValue('description', description);
         setValue('key_word', key_word);
