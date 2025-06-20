@@ -53,6 +53,7 @@ const Login = () => {
     setIsSubmitting(true);
     if (isSubmitting) return;
     if (data.phone === '') {
+      setIsSubmitting(false);
       return setIsPhone(true);
     }
     try {
