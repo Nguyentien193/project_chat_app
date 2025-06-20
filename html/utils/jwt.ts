@@ -24,6 +24,15 @@ export const parseCookie = (name: string) => {
   }
 }
 
+export function safeParseLocalStorage<T = any>(key: string, fallback: T = {} as T): T {
+  try {
+    const item = localStorage.getItem(key);
+    return item ? JSON.parse(item) : fallback;
+  } catch (error) {
+    return fallback;
+  }
+}
+
 export const saveAuth = (auth: any, exdays = 1) => {
   saveCookie({ name: APP_CONFIG.profileKey, value: JSON.stringify(auth), exdays });
 };

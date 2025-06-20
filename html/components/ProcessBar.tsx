@@ -18,7 +18,9 @@ const ProgressBar = ({ isSubmitting }: { isSubmitting: boolean }) => {
 
   return (
     <div className="progress-bar">
-      <span style={{ width: `${progress}%` }} />
+      <span style={{ width: `${progress}%` }}>
+        <b>{progress}%</b>
+      </span>
     </div>
   );
 };

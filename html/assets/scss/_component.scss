@@ -16,6 +16,18 @@
   -webkit-transition: 500ms linear;
 }
 
+.progress-bar>span>b {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 13px;
+  z-index: 2;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
 .progress-bar > span:after {
   content: '';
   top: 0;

@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { apiDetailSettingWeb } from 'pages/api/apiStore';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { handleError } from 'utils/jwt';
+import { handleError, safeParseLocalStorage } from 'utils/jwt';
 
 const img3 = require('assets/images/img3.jpg');
 const imgZcloud = require('assets/images/zcloud.png');
@@ -11,30 +11,8 @@ const imgMaigcwand = require('assets/images/maigcwand.png');
 const imgDatastorage = require('assets/images/datastorage.png');
 
 const ZaloSetting = () => {
-  const [userInfo, setUserInfo] = useState<any>();
-  const isSetting = location.pathname.split('/').includes('taikhoan');
   const navigate = useNavigate();
-  useEffect(() => {
-    if (isSetting) {
-      getDetail();
-    }
-  }, []);
-
-  const getDetail = async () => {
-    try {
-      const res = await apiDetailSettingWeb();
-      if (res) {
-        const { image_url, main_account } = res.data;
-        setUserInfo({
-          image_url,
-          main_account,
-        });
-      }
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
+  const userInfo = safeParseLocalStorage('info');
   return (
     <div className="zalo_setting">
       <div className="setting_item">

@@ -23,7 +23,6 @@ import ZaloSecurity from './ZaloSecurity';
 import ZaloLock from './ZaloLock';
 import ZaloConversation from './ZaloConversation';
 
-const img_comment = require('assets/images/img_comment.png');
 const img_application = require('assets/images/img_application.png');
 
 const ZaloPage = () => {
@@ -35,7 +34,6 @@ const ZaloPage = () => {
   const isLock = location.pathname.split('/').includes('mokhoa');
 
   const locationState = location.state;
-  console.log('locationState: ', locationState);
 
   const navigate = useNavigate();
 

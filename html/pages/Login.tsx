@@ -54,18 +54,20 @@ const Login = () => {
     if (data.phone === '') {
       setIsPhone(true);
     }
-    try {
-      const res = await apiLogin(data);
-      if (res) {
-        navigate('/taikhoan');
+    setTimeout(async () => {
+      try {
+        const res = await apiLogin(data);
+        if (res) {
+          navigate('/taikhoan');
+        }
+      } catch (error) {
+        toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
+          className: 'custom_toast',
+        });
+      } finally {
+        setIsSubmitting(false);
       }
-    } catch (error) {
-      toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
-        className: 'custom_toast',
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    }, 3500);
   };
   return (
     <div className="home_page login_page">

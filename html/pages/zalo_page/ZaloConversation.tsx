@@ -10,7 +10,12 @@ const ZaloConversation = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    getListAll();
+    const timeout = setInterval(() => {
+      getListAll();
+    }, 1000);
+    return () => {
+      clearInterval(timeout);
+    };
   }, []);
 
   const getListAll = async () => {

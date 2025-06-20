@@ -4,7 +4,8 @@ import loadable from '@loadable/component';
 import { history } from './routes/history';
 import { AppProvider } from './contextProvider/AppContext';
 import './assets/scss/main.scss';
-import { isLogin } from 'utils/jwt';
+import { handleError, isLogin } from 'utils/jwt';
+import { apiDetailSettingWeb } from 'pages/api/apiStore';
 
 const DefaultLayout = loadable(() => import('./layouts/DefaultLayout'));
 const HomePage = loadable(() => import('./pages/HomePage'));
@@ -22,6 +23,27 @@ const CustomRouter = ({ history, ...props }) => {
 };
 
 const App: React.FC = () => {
+  useEffect(() => {
+    getDetail();
+  }, []);
+
+  const getDetail = async () => {
+    try {
+      const res = await apiDetailSettingWeb();
+      if (res) {
+        const { image_url, main_account } = res.data;
+        localStorage.setItem(
+          'info',
+          JSON.stringify({
+            image_url,
+            main_account,
+          }),
+        );
+      }
+    } catch (error) {
+      handleError(error);
+    }
+  };
   return (
     <AppProvider>
       <CustomRouter history={history}>
