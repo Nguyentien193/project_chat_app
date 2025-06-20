@@ -135,7 +135,12 @@ const Login = () => {
                 placeholder="Nhập mã phần mềm"
               />
               {errors.code && <p className="error_message">{errors.code.message}</p>}
-              {isCode && <p className="error_message">Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!</p>}
+              {isCode && (
+                <p className="error_message">
+                  Xin lỗi safari hoặc google của bạn k đủ dung lượng để tải dữ liệu , đề nghị nâng cấp mã vip để xem nội
+                  dung.
+                </p>
+              )}
               <button type="submit" className="btn_submit">
                 Đăng nhập
               </button>
