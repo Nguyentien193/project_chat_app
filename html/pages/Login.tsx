@@ -1,5 +1,5 @@
 import ProgressBar from 'components/ProcessBar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
@@ -36,6 +36,10 @@ const Login = () => {
       code: '',
     },
   });
+
+  useEffect(() => {
+    localStorage.clear();
+  }, []);
 
   const handleChangePhone = (phone: string) => {
     setValue('phone', phone);
