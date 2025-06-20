@@ -71,9 +71,7 @@ const ListConversation = () => {
       const arrCopy = [...prev];
       arrCopy[idx] = { ...arrCopy[idx], [key]: value };
 
-      if (key === 'type') {
-        console.log('value: ', value);
-
+      if (key === 'sender_id') {
         if (value === 0) {
           arrCopy[idx] = { ...arrCopy[idx], receiver_id: Number(id) };
           arrCopy[idx] = { ...arrCopy[idx], sender_id: 0 };
@@ -170,7 +168,10 @@ const ListConversation = () => {
             <div className="form-control">
               <label className="form-label">Trạng thái</label>
               <div className="select-custom">
-                <select value={item.type} onChange={(e) => handleChangeData(idx, 'type', Number(e.target.value))}>
+                <select
+                  value={item.sender_id}
+                  onChange={(e) => handleChangeData(idx, 'sender_id', Number(e.target.value))}
+                >
                   <option value={0}>{`Tài khoản chính:${adminInfo?.main_account || ''}`}</option>
                   <option value={Number(id)}>Tài khoản nhắn tin</option>
                 </select>

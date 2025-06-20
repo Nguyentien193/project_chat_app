@@ -4,7 +4,7 @@ import { faArrowDown } from '@fortawesome/free-solid-svg-icons';
 
 const img1 = require('assets/images/img1.jpg');
 const img2 = require('assets/images/img2.jpg');
-const img3 = require('assets/images/img3.jpg');
+const img3 = require('assets/images/img3.png');
 const img4 = require('assets/images/img4.jpg');
 const img5 = require('assets/images/img5.jpg');
 const img6 = require('assets/images/img6.jpg');

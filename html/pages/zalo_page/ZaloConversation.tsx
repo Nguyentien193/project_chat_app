@@ -32,7 +32,7 @@ const ZaloConversation = () => {
     <div className="chat-container">
       {conversation?.map((item, idx: number) => (
         <React.Fragment key={idx}>
-          {item.sender_id === 10 ? (
+          {item.sender_id === Number(id) ? (
             <>
               <div className="chat-row left">
                 <img src={state?.image_url} alt="avatar" />

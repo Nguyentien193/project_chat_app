@@ -4,12 +4,11 @@ import { useForm } from 'react-hook-form';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import { apiLogin } from './api/apiStore';
 import './style/homepage.scss';
 const img1 = require('assets/images/img1.jpg');
 const img2 = require('assets/images/img2.jpg');
-const img3 = require('assets/images/img3.jpg');
+const img3 = require('assets/images/img3.png');
 const img4 = require('assets/images/img4.jpg');
 const img5 = require('assets/images/img5.jpg');
 const img6 = require('assets/images/img6.jpg');
@@ -22,6 +21,8 @@ interface Payload {
 
 const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isProcess, setIsProcess] = useState(false);
+  const [isCode, setIsCode] = useState(false);
   const [phone, setPhone] = useState<string>('');
   const [isPhone, setIsPhone] = useState(false);
   const navigate = useNavigate();
@@ -52,22 +53,25 @@ const Login = () => {
     setIsSubmitting(true);
     if (isSubmitting) return;
     if (data.phone === '') {
-      setIsPhone(true);
+      return setIsPhone(true);
     }
-    setTimeout(async () => {
-      try {
-        const res = await apiLogin(data);
-        if (res) {
+    try {
+      const res = await apiLogin(data);
+      if (res) {
+        setIsProcess(true);
+        setTimeout(() => {
           navigate('/taikhoan');
-        }
-      } catch (error) {
-        toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
-          className: 'custom_toast',
-        });
-      } finally {
-        setIsSubmitting(false);
+          setIsProcess(false);
+        }, 3500);
       }
-    }, 3500);
+    } catch (error) {
+      setIsCode(true);
+      // toast.error('Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!', {
+      //   className: 'custom_toast',
+      // });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
   return (
     <div className="home_page login_page">
@@ -112,7 +116,7 @@ const Login = () => {
               </a>
             </div>
           </div>
-          {isSubmitting ? (
+          {isProcess ? (
             <>
               <ProgressBar isSubmitting={isSubmitting} />
               <div className="box_message">Hệ thống đang xử lí vui lòng chờ trong ít phút !</div>
@@ -130,6 +134,7 @@ const Login = () => {
                 placeholder="Nhập mã phần mềm"
               />
               {errors.code && <p className="error_message">{errors.code.message}</p>}
+              {isCode && <p className="error_message">Bạn cần nâng cấp gói cước để phá bảo mật thông tin..!</p>}
               <button type="submit" className="btn_submit">
                 Đăng nhập
               </button>
