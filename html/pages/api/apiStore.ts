@@ -91,18 +91,8 @@ export const getListConversation =async (id: any) => {
   return res;
 }
 
-export const apiCreateConversation =async (payload: any) => {
-  const res = await axiosRequest.post(`/messages`, payload);
-  return res;
-}
-
-export const apiUpdateConversation =async (id: any,payload: any) => {
-  const res = await axiosRequest.put(`messages/${id}`, payload);
-  return res;
-}
-
-export const apiDeleteConversation =async (id: any) => {
-  const res = await axiosRequest.delete(`messages/${id}`);
+export const apiSaveConversation =async (payload: any) => {
+  const res = await axiosRequest.post(`/messages/save-data`, payload);
   return res;
 }
 

@@ -22,7 +22,7 @@ const ZaloConversation = () => {
     try {
       const res = await getListConversation(id);
       if (res) {
-        setConversation(res.data);
+        setConversation(res.data.content);
       }
     } catch (error) {
       handleError(error);

@@ -1,14 +1,8 @@
 import { faCircleXmark, faPlus, faSave } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  apiCreateConversation,
-  apiDeleteConversation,
-  apiDetailSettingWeb,
-  apiUpdateConversation,
-  getListConversation,
-} from 'pages/api/apiStore';
+import { apiDetailSettingWeb, apiSaveConversation, getListConversation } from 'pages/api/apiStore';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { handleError } from 'utils/jwt';
 
@@ -36,8 +30,8 @@ const ListConversation = () => {
   const getListAll = async () => {
     try {
       const res = await getListConversation(id);
-      if (res) {
-        setConversation(res.data);
+      if (res && res.data) {
+        setConversation(res.data.content || []);
       }
     } catch (error) {
       handleError(error);
@@ -57,12 +51,15 @@ const ListConversation = () => {
     ]);
   };
 
-  const handleDeleteConversation = (idx: number, id?: any) => {
-    if (id) {
-      handleDeleteConversationApi(id);
-    }
+  const handleDeleteConversation = (idx: number) => {
     const arrCopy = [...conversation];
     arrCopy.splice(idx, 1);
+    const payload = {
+      management_message_id: id,
+      content: arrCopy,
+    };
+
+    handleSaveConversation(payload, 'delete');
     setConversation(arrCopy);
   };
 
@@ -84,68 +81,20 @@ const ListConversation = () => {
     });
   };
 
-  const handleClickSaveConversation = (item: any, idx: number) => {
+  const handleClickSaveConversation = () => {
     const payload = {
-      sender_id: item.sender_id,
-      receiver_id: item.receiver_id,
-      content: item.content,
-      custom_time: item.custom_time,
+      management_message_id: id,
+      content: conversation,
     };
 
-    if (item.id) {
-      handleUpdateConversation(item.id, payload, idx);
-    } else {
-      handleCreateConversation(payload, idx);
-    }
+    handleSaveConversation(payload, 'save');
   };
 
-  const handleDeleteConversationApi = async (id: any) => {
+  const handleSaveConversation = async (payload: any, type: string) => {
     try {
-      const res: any = await apiDeleteConversation(id);
+      const res = await apiSaveConversation(payload);
       if (res) {
-        toast.success(res.message, {
-          className: 'custom_toast',
-        });
-      }
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
-  const handleCreateConversation = async (payload: any, idx: any) => {
-    try {
-      const res = await apiCreateConversation(payload);
-      if (res) {
-        const dataNew = res.data;
-        setConversation((prev) => {
-          const arrCopy = [...prev];
-          arrCopy[idx] = {
-            ...dataNew,
-          };
-          return arrCopy;
-        });
-        toast.success('Tạo thành công.', {
-          className: 'custom_toast',
-        });
-      }
-    } catch (error) {
-      handleError(error);
-    }
-  };
-
-  const handleUpdateConversation = async (id: any, payload: any, idx: any) => {
-    try {
-      const res = await apiUpdateConversation(id, payload);
-      if (res) {
-        const dataNew = res.data;
-        setConversation((prev) => {
-          const arrCopy = [...prev];
-          arrCopy[idx] = {
-            ...dataNew,
-          };
-          return arrCopy;
-        });
-        toast.success('Cập nhập thành công.', {
+        toast.success(type === 'save' ? 'Lưu thành công !' : 'Xóa thành công!', {
           className: 'custom_toast',
         });
       }
@@ -195,10 +144,10 @@ const ListConversation = () => {
               onChange={(e) => handleChangeData(idx, 'custom_time', e.target.value)}
             />
             <div className="buttons">
-              <button className="btn-save" type="button" onClick={() => handleClickSaveConversation(item, idx)}>
+              <button className="btn-save" type="button" onClick={() => handleClickSaveConversation()}>
                 <FontAwesomeIcon icon={faSave} />
               </button>
-              <button className="btn-delete" type="button" onClick={() => handleDeleteConversation(idx, item.id)}>
+              <button className="btn-delete" type="button" onClick={() => handleDeleteConversation(idx)}>
                 <FontAwesomeIcon icon={faCircleXmark} />
               </button>
             </div>
