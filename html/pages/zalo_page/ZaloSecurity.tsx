@@ -1,13 +1,17 @@
 import ToogleSwich from 'components/ToogleSwich';
+import { safeParseLocalStorage } from 'utils/jwt';
 
 const ZaloSecurity = () => {
+  const userInfo = safeParseLocalStorage('info');
+  console.log('userInfo: ', userInfo);
+
   return (
     <div className="zalo-settings">
       <div className="zalo-settings__section">
         <h2 className="zalo-settings__title">Tài khoản</h2>
         <div className="zalo-settings__item">
           <div className="zalo-settings__label">Đổi số điện thoại</div>
-          <div className="zalo-settings__sub">+84346783395</div>
+          <div className="zalo-settings__sub">{userInfo?.phone || ''}</div>
         </div>
         <div className="zalo-settings__item">Lịch sử đăng nhập</div>
         <div className="zalo-settings__item border-none mb-16">Đổi mật khẩu</div>

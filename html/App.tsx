@@ -31,12 +31,13 @@ const App: React.FC = () => {
     try {
       const res = await apiDetailSettingWeb();
       if (res) {
-        const { image_url, main_account } = res.data;
+        const { image_url, main_account, phone } = res.data;
         localStorage.setItem(
           'info',
           JSON.stringify({
             image_url,
             main_account,
+            phone,
           }),
         );
       }
