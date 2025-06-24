@@ -10,14 +10,20 @@ const ZaloMessage = () => {
   const [messages, setMessages] = useState<any[]>([]);
 
   useEffect(() => {
-    getListAll();
+    const timeout = setInterval(() => {
+      getListAll();
+    }, 1000);
+    return () => {
+      clearInterval(timeout);
+    };
   }, []);
 
   const getListAll = async () => {
     try {
       const res = await apiListMessages();
       if (res) {
-        setMessages(res.data);
+        const newArr = res.data.filter((item: any) => item.is_hidden !== 1);
+        setMessages(newArr);
       }
     } catch (error) {
       handleError(error);

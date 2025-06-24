@@ -11,10 +11,12 @@ import ListConversation from './ListConversation';
 const CreateUpdateMS = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [imgDetail, setImgDetail] = useState<string>('');
+  const [isHidden, setIsHidden] = useState(0);
 
   const { register, handleSubmit, setValue } = useForm<any>({
     defaultValues: {
       status: 0,
+      is_hidden: 0,
     },
   });
 
@@ -31,12 +33,15 @@ const CreateUpdateMS = () => {
     try {
       const res = await apiDetailMessages(id);
       if (res) {
-        const { status, account, content, custom_time, image_url } = res.data;
-        setValue('status', status || '');
+        const { status, account, content, custom_time, image_url, is_hidden } = res.data;
+        setValue('status', status);
         setValue('account', account || '');
         setValue('content', content || '');
+        setValue('is_hidden', is_hidden);
+
         setValue('custom_time', custom_time ? custom_time : '');
         setImgDetail(image_url);
+        setIsHidden(Number(is_hidden));
       }
     } catch (error) {
       handleError(error);
@@ -117,6 +122,20 @@ const CreateUpdateMS = () => {
               <polyline points="1 1 5 5 9 1"></polyline>
             </svg>
           </div>
+        </div>
+        <div className="flex-center gap-10">
+          <label className="custom-checkbox">
+            <input
+              checked={isHidden === 1}
+              type="checkbox"
+              onChange={(e) => {
+                setIsHidden(e.target.checked ? 1 : 0);
+                setValue('is_hidden', e.target.checked ? 1 : 0);
+              }}
+            />
+            <span className="checkmark"></span>
+          </label>
+          <label className="form-label">Vô hiệu hóa tin nhắn</label>
         </div>
         {id && <ListConversation />}
 

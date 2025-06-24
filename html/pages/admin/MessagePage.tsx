@@ -71,7 +71,10 @@ const MessagePage = () => {
                 <td>{item.account}</td>
                 <td>{item.content}</td>
                 <td>{item.custom_time ? item.custom_time : ''}</td>
-                <td>{item.status === 1 ? <span className="status">Hiển thị</span> : ''}</td>
+                <td>
+                  {item.status === 1 ? <span className="status">Hiển thị</span> : ''}{' '}
+                  {item.is_hidden === 1 ? <span className="hidden">OFF</span> : ''}
+                </td>
                 <td>
                   <button type="button" className="edit " onClick={() => naviagte(`/admin/msms/edit/${item.id}`)}>
                     Sửa
